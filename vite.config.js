@@ -4,6 +4,7 @@ import { defineConfig } from 'vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  // for build: base: '/~kimtun/Javascript-ohtu/wsk-routing/',
+  //base: '/~kimtun/Javascript-ohtu/wsk-builds/hooks/', // Uncomment this line when deploying to GitHub Pages
   base: './',
 })
+
