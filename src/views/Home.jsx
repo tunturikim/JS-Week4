@@ -5,9 +5,11 @@ import { fetchData } from '../utils/fetchData';
 const Home = () => {
   const [mediaArray, setMediaArray] = useState([]);
 
+  const MEDIA_API = import.meta.env.VITE_MEDIA_API;
+
  useEffect(() => {
      const getMedia = async () => {
-       const json = await fetchData('test.json');
+       const json = await fetchData(MEDIA_API + '/media');
        setMediaArray(json);
      };
      getMedia();
