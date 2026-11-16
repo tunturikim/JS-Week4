@@ -1,9 +1,22 @@
 import {useLocation, useNavigate} from 'react-router';
+import {useState, useEffect} from 'react';
+import {useUser} from '../hooks/apiHooks';
 
 const Single = () => {
+  const {getUserInfo} = useUser();
+  const [user, setUser] = useState(null);
+
   const {state} = useLocation();
   const navigate = useNavigate();
   const item = state;
+
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      setUser(await getUserInfo(item.user_id));
+    };
+    fetchUser();
+  }, []);
 
   if (!item) {
     return (
@@ -24,7 +37,8 @@ const Single = () => {
         <video controls src={item.filename} />
       )}
       <p>{item.description}</p>
-      <p>Uploaded by: {item.username}</p>
+      <h4>Uploaded by: {item.username}</h4>
+      <p>Email: {user?.email}, User level: {user?.level_name}</p>
       <p>Created: {new Date(item.created_at).toLocaleString('fi-FI')}</p>
       <p>
         Size: {item.filesize} bytes, type: {item.media_type}
