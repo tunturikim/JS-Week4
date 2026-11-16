@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 
-const MediaRow = ({item}) => {
+const MediaRow = ({item, setItem}) => {
   return (
-    <tr>
+    <tr onClick={() => setItem(item)}>
       <td>
         <img src={item.thumbnail} alt={item.title} />
       </td>
@@ -28,6 +28,7 @@ MediaRow.propTypes = {
     description: PropTypes.string,
     created_at: PropTypes.string,
   }).isRequired,
+  setItem: PropTypes.func.isRequired,
 };
 
 export default MediaRow;
