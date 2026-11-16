@@ -24,6 +24,7 @@ const Single = () => {
         <video controls src={item.filename} />
       )}
       <p>{item.description}</p>
+      <p>Uploaded by: {item.username}</p>
       <p>Created: {new Date(item.created_at).toLocaleString('fi-FI')}</p>
       <p>
         Size: {item.filesize} bytes, type: {item.media_type}
