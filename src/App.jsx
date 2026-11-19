@@ -1,4 +1,5 @@
 import {BrowserRouter, Route, Routes} from 'react-router';
+import {UserProvider} from './contexts/UserContext';
 import './App.css';
 import Home from './views/Home';
 import Layout from './components/Layout';
@@ -11,16 +12,18 @@ import Login from './views/Login';
 const App = () => {
   return (
     <BrowserRouter basename={import.meta.env.BASE_URL}>
-      <Routes>
-        <Route element={<Layout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/upload" element={<Upload />} />
-          <Route path="/single" element={<Single />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/demo" element={<Demo />} />
-        </Route>
-      </Routes>
+      <UserProvider>
+        <Routes>
+          <Route element={<Layout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/upload" element={<Upload />} />
+            <Route path="/single" element={<Single />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/demo" element={<Demo />} />
+          </Route>
+        </Routes>
+      </UserProvider>
     </BrowserRouter>
   );
 };
