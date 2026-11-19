@@ -10,7 +10,6 @@ const Single = () => {
   const navigate = useNavigate();
   const item = state;
 
-
   useEffect(() => {
     const fetchUser = async () => {
       setUser(await getUserInfo(item.user_id));
@@ -38,7 +37,9 @@ const Single = () => {
       )}
       <p>{item.description}</p>
       <h4>Uploaded by: {item.username}</h4>
-      <p>Email: {user?.email}, User level: {user?.level_name}</p>
+      <p>
+        Email: {user?.email}, User level: {user?.level_name}
+      </p>
       <p>Created: {new Date(item.created_at).toLocaleString('fi-FI')}</p>
       <p>
         Size: {item.filesize} bytes, type: {item.media_type}

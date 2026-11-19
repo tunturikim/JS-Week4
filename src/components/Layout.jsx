@@ -16,12 +16,12 @@ const Layout = () => {
             <li>
               <Link to="/upload">Upload</Link>
             </li>
-              <li>
-                <Link to="/login">Login</Link>
-              </li>
-              <li>
-                <Link to="/demo">Demo</Link>
-              </li>
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+            <li>
+              <Link to="/demo">Demo</Link>
+            </li>
           </ul>
         </nav>
       </header>

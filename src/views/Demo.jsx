@@ -1,10 +1,10 @@
-import Example from "../components/Example";
-import HooksExample from "../components/HooksExample";
-import TestForm from "../components/TestForm";
+import Example from '../components/Example';
+import HooksExample from '../components/HooksExample';
+import TestForm from '../components/TestForm';
 
 const Demo = () => {
   return (
-  <div>
+    <div>
       <h2>Hooks Demo</h2>
       <Example />
       <h3>Hooks example wsk sivulta</h3>
