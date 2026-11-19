@@ -7,9 +7,9 @@ const AUTH_API = import.meta.env.VITE_AUTH_API;
 const useMedia = () => {
   const [mediaArray, setMediaArray] = useState([]);
   useEffect(() => {
-    const getMedia = async () => {
+    const getMedia = async (limit) => {
       // Fetch media files from the API
-      const mediafiles = await fetchData(MEDIA_API + '/media');
+      const mediafiles = await fetchData(MEDIA_API + '/media?limit=' + limit);
       // Fetch user data for each media file and add the username to the media file object
       const updatedMediafiles = await Promise.all(
         mediafiles.map(async (mediafile) => {
@@ -22,7 +22,7 @@ const useMedia = () => {
 
       setMediaArray(updatedMediafiles);
     };
-    getMedia();
+    getMedia(10);
   }, []);
 
   return {mediaArray};
@@ -33,7 +33,15 @@ const useUser = () => {
     const userData = await fetchData(`${AUTH_API}/users/${userId}`);
     return userData;
   };
-  return {getUserInfo};
+
+  const getUserByToken = async (token) => {
+    const result = await fetchData(`${AUTH_API}/users/token`, {
+      headers: {Authorization: `Bearer ${token}`},
+    });
+    return result.user;
+  };
+
+  return {getUserInfo, getUserByToken};
 };
 
 const useAuthentication = () => {
@@ -55,4 +63,19 @@ const useAuthentication = () => {
   return postLogin;
 };
 
-export {useMedia, useUser, useAuthentication};
+const useRegistration = () => {
+  const postRegisteration = async (inputs) => {
+    const fetchOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(inputs),
+    };
+    return await fetchData(`${AUTH_API}/users`, fetchOptions);
+  };
+
+  return postRegisteration;
+};
+
+export {useMedia, useUser, useAuthentication, useRegistration};
