@@ -1,7 +1,7 @@
 import useForm from '../hooks/formHooks';
 import {useRegistration} from '../hooks/apiHooks';
 
-const RegisterForm = (setDisplayLogin) => {
+const RegisterForm = ({setDisplayLogin}) => {
   const postRegisteration = useRegistration();
 
   const initValues = {
