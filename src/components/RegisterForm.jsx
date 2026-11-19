@@ -13,10 +13,10 @@ const RegisterForm = ({setDisplayLogin}) => {
   const doRegistration = async (formData) => {
     try {
       const result = await postRegisteration(formData);
-      alert('Registration successful', result.message);
+      alert('Registration successful' + result.message);
       setDisplayLogin(true);
     } catch (error) {
-      alert('Registration failed', error.message);
+      alert('Registration failed' + error.message);
       console.error('Registration failed', error);
     }
   };
