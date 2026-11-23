@@ -1,10 +1,8 @@
 import useForm from '../hooks/formHooks';
-import {useAuthentication} from '../hooks/apiHooks';
-import {useNavigate} from 'react-router';
+import {useUserContext} from '../hooks/contextHooks';
 
 const LoginForm = () => {
-  const postlogin = useAuthentication();
-  const navigate = useNavigate();
+  const {handleLogin} = useUserContext();
 
   const initValues = {
     username: '',
@@ -12,27 +10,19 @@ const LoginForm = () => {
   };
 
   const doLogin = async (formData) => {
-    console.log(inputs);
-    console.log('Login submitted');
-    // TODO: add login functionalities here
+    console.log('HOOKIN palauttama formdata', formData);
     try {
-      const userInfo = await postlogin(formData);
-      console.log(userInfo);
-      localStorage.setItem('token', userInfo.token);
-      navigate('/');
+      handleLogin(formData);
     } catch (error) {
       console.log('Error', error);
     }
   };
 
-  const {inputs, handleInputChange, handleSubmit} = useForm(
-    doLogin,
-    initValues,
-  );
+  const {handleInputChange, handleSubmit} = useForm(doLogin, initValues);
 
   return (
     <>
-      <h1>Login</h1>
+      <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="loginuser">Username</label>
