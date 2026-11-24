@@ -1,4 +1,4 @@
-import {Link, Outlet} from 'react-router';
+import {NavLink, Link, Outlet} from 'react-router';
 import {useUserContext} from '../hooks/contextHooks';
 import {useEffect} from 'react';
 
@@ -14,25 +14,50 @@ const Layout = () => {
       <header>
         <h1>My Media App</h1>
         <nav>
-          <ul>
+          <ul className="m-0 p-0 list-none bg-gray-800 flex justify-end overflow-hidden">
             <li>
-              <Link to="/">Home</Link>
+              <NavLink
+                to="/"
+                className="block text-white text-center p-2 hover:bg-gray-700"
+              >
+                Home
+              </NavLink>
             </li>
             <li>
-              <Link to="/demo">Demo</Link>
+              <NavLink
+                to="/demo"
+                className="block text-white text-center p-2 hover:bg-gray-700"
+              >
+                Demo
+              </NavLink>
             </li>
             {user ? (
               <>
                 <li>
-                  <Link to="/profile">Profile</Link>
+                  <NavLink
+                    to="/profile"
+                    className="block text-white text-center p-2 hover:bg-gray-700"
+                  >
+                    Profile
+                  </NavLink>
                 </li>
                 <li>
-                  <Link to="/upload">Upload</Link>
+                  <NavLink
+                    to="/upload"
+                    className="block text-white text-center p-2 hover:bg-gray-700"
+                  >
+                    Upload
+                  </NavLink>
                 </li>
               </>
             ) : (
               <li>
-                <Link to="/login">Login</Link>
+                <NavLink
+                  to="/login "
+                  className="block text-white text-center p-2 hover:bg-gray-700"
+                >
+                  Login
+                </NavLink>
               </li>
             )}
           </ul>
